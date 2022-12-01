@@ -6,7 +6,15 @@ require('colors')
 const db = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PWD, {
     host: process.env.DB_HOST,
     dialect: process.env.SEQUELIZE_DIALECT,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+    dialectOptions: {
+    // Observe the need for this nested `options` field for MSSQL
+    options: {
+      // Your tedious options here
+      useUTC: false, //
+    }
+  },
+
 });
 
 const dbConection = async() => {

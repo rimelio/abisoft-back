@@ -4,7 +4,6 @@ const cors = require('cors');
 
 const { dbConection } = require('../database/config');
 
-
 class Server {
 
     constructor() {
@@ -12,28 +11,7 @@ class Server {
         this.port = process.env.PORT;
 
         // modelos no requeridos
-        //this.dispositivosPath = '/api/dispositivo';
-        //this.tipoDispositivoPath = '/api/tipoDispositivo';
-        this.manufacturersPath = '/api/manufacturer';
-
-        //modelos ya existentes// 
-        this.companysPath = '/api/company';
-        this.accesoryPath = '/api/accesory';
-
-        // modelos adionados //
-        this.cityPath = '/api/city';
-        this.countryPath = '/api/country';
-        this.locationPath = '/api/location';
-
-
-        // upload de imagenes
-        this.uploadPath = '/api/upload';
-        
-
-        //this.activosPath = '/api/activos';
-
-        this.categoryPath = '/api/category';
-        this.categoryTypePath = '/api/categoryType'
+        this.platosPath = '/api/platos';
 
         //Establecer coneccion a la db
         this.connectDB();
@@ -58,30 +36,11 @@ class Server {
 
         //Directorio publico
         this.app.use(express.static('public'))
-
-        
-
         
     }
 
     routes() {
-        this.app.use(this.manufacturersPath, require('../routes/manufacturer'))
-        this.app.use(this.companysPath, require('../routes/company'))
-        this.app.use(this.accesoryPath, require('../routes/accesory'))
-
-        // rutas adicionadas//
-        this.app.use(this.cityPath, require('../routes/city'))
-        this.app.use(this.countryPath, require('../routes/country'))
-        this.app.use(this.locationPath, require('../routes/location'))
-        
-
-        // ruta de upload de imagenes
-        this.app.use(this.uploadPath, require('../routes/upload'));
-
-
-        // rutas adicionadas relacionadas//
-        this.app.use(this.categoryPath, require('../routes/category'))
-        this.app.use(this.categoryTypePath, require('../routes/categoryType'))
+        this.app.use(this.platosPath, require('../routes/plato'))
     }
 
     listen() {
